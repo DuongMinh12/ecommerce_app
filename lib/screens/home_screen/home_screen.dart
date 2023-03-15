@@ -1,5 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:ecommerce_app/constants/add_fontstyle.dart';
+import 'package:ecommerce_app/constants/add_all.dart';
 import 'package:flutter/material.dart';
 import '../../Widget/Widget.dart';
 import 'package:ecommerce_app/models/models.dart';
@@ -24,8 +24,11 @@ class HomeScreen extends StatelessWidget {
             ),
             items: Category.catagories.map((category) => HeroCarousecard(category: category)).toList(),
           )),
-          SelectionTitle( title: "RECOMMENT",),
-
+          SelectionTitle(
+            title: "RECOMMENT",
+          ),
+          // ProductCard(product: Product.products[0],),
+          ProductCarousel( products: Product.products),
         ],
       ),
     );
