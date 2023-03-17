@@ -66,9 +66,9 @@ static const String routeName ='cartPage';
                       Container(
                         height: 310,
                         child: ListView.builder(
-                            itemCount: Cart().products.length,
+                            itemCount: state.cart.products.length,
                             itemBuilder: (BuildContext context, int indext){
-                              return CardProductCard(product: Cart().products[indext]);
+                              return CardProductCard(product: state.cart.products[indext]);
                             }),
                       ),
                     ],
