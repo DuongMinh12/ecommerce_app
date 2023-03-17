@@ -1,25 +1,28 @@
-import 'package:equatable/equatable.dart';
-
-import 'wishlist_bloc.dart';
+part of 'wishlist_bloc.dart';
 
 abstract class WishListState extends Equatable{
   const WishListState();
+
+  @override
+  List<Object?> get props => [];
 }
 
-class WishListLoading extends Equatable{
+class WishListLoading extends WishListState{
   @override
-  // TODO: implement props
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [];
 }
 
-class WishListLoaded extends Equatable{
+
+class WishListLoaded extends WishListState{
+  final WishList wishList;
+  const WishListLoaded ({this.wishList = const WishList()});
+
   @override
-  // TODO: implement props
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [wishList];
 }
 
-class WishListError extends Equatable{
+
+class WishListError extends WishListState{
   @override
-  // TODO: implement props
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [];
 }

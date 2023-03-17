@@ -3,6 +3,9 @@ import 'package:ecommerce_app/Widget/Widget.dart';
 import 'package:ecommerce_app/constants/add_all.dart';
 import 'package:ecommerce_app/models/models.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ecommerce_app/bloc/wishlist/wishlist_bloc.dart';
+
 
 class ProductPage extends StatelessWidget {
   const ProductPage({super.key, required this.product});
@@ -25,19 +28,51 @@ class ProductPage extends StatelessWidget {
       appBar: AppBarWidget(
         title: product.name,
       ),
-      bottomNavigationBar: BottomAppBar(color: Colors.black,
-      child: Container(
-        height: 70,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            IconButton(onPressed: (){}, icon: Icon(Icons.share), color: Colors.white,),
-            IconButton(onPressed: (){}, icon: Icon(Icons.favorite), color: Colors.white,),
-            ElevatedButton(onPressed: (){}, child: Text('ADD TO CART', style: txtfont18,),
-            style: ElevatedButton.styleFrom(backgroundColor: Colors.white),)
-          ],
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.black,
+        child: Container(
+          height: 70,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              IconButton(
+                onPressed: () {},
+                icon: Icon(Icons.share),
+                color: Colors.white,
+              ),
+
+              ///Cant ad product
+              BlocBuilder<WishlistBloc, WishListState>(
+                builder: (context, state) {
+                  return IconButton(
+                    onPressed: () {
+                      context
+                          .read<WishlistBloc>()
+                          .add(AddWishListProduct(product));
+
+                      final snackBar = SnackBar(content: Text('Added to your favorite list!'));
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    },
+                    icon: Icon(Icons.favorite),
+                    color: Colors.white,
+                  );
+                },
+              ),
+
+
+
+              ElevatedButton(
+                onPressed: () {},
+                child: Text(
+                  'ADD TO CART',
+                  style: txtfont18,
+                ),
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
+              )
+            ],
+          ),
         ),
-      ),),
+      ),
       body: ListView(children: [
         CarouselSlider(
             options: CarouselOptions(
