@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../bloc/cart/cart_bloc.dart';
 import '../constants/add_all.dart';
 import '../models/models.dart';
 
 class CardProductCard extends StatelessWidget {
   final Product product;
+
   const CardProductCard({Key? key, required this.product}) : super(key: key);
 
   @override
@@ -25,12 +28,22 @@ class CardProductCard extends StatelessWidget {
             ),
           ),
           SizedBox(width: 10,),
-          Row(
-            children: [
-              IconButton(onPressed: (){}, icon: Icon(Icons.remove_circle)),
-              Text('1', style: txtfont14,),
-              IconButton(onPressed: (){}, icon: Icon(Icons.add_circle)),
-            ],
+          BlocBuilder<CartBloc, CartState>(
+            builder: (context, state) {
+              return Row(
+                children: [
+                  IconButton(onPressed: () {
+                    context.read<CartBloc>()
+                        .add(CartProductRemove(product));
+                  }, icon: Icon(Icons.remove_circle)),
+                  Text('1', style: txtfont14,),
+                  IconButton(onPressed: () {
+                    context.read<CartBloc>()
+                        .add(CartProductAdded(product));
+                  }, icon: Icon(Icons.add_circle)),
+                ],
+              );
+            },
           ),
         ],
       ),

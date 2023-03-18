@@ -90,6 +90,9 @@ class ProductCard extends StatelessWidget {
                                   context
                                   .read<CartBloc>()
                                       .add(CartProductAdded(product));
+
+                                  final snackBar = SnackBar(content: Text('Product added to your cart list!'));
+                                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
                                 },
                                 icon: Icon(
                                   Icons.add_circle,

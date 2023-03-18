@@ -2,9 +2,12 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ecommerce_app/Widget/Widget.dart';
 import 'package:ecommerce_app/constants/add_all.dart';
 import 'package:ecommerce_app/models/models.dart';
+import 'package:ecommerce_app/screens/cart/cart_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ecommerce_app/bloc/wishlist/wishlist_bloc.dart';
+
+import '../../bloc/cart/cart_bloc.dart';
 
 
 class ProductPage extends StatelessWidget {
@@ -61,14 +64,24 @@ class ProductPage extends StatelessWidget {
 
 
 
-              ElevatedButton(
-                onPressed: () {},
+              BlocBuilder<CartBloc, CartState>(
+  builder: (context, state) {
+    return ElevatedButton(
+                onPressed: () {
+                  context.read<CartBloc>()
+                      .add(CartProductAdded(product));
+                  // final snackBar = SnackBar(content: Text('Product added to your cart list!'));
+                  // ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  Navigator.pushNamed(context, CartPage.routeName);
+                },
                 child: Text(
                   'ADD TO CART',
                   style: txtfont18,
                 ),
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
-              )
+              );
+  },
+)
             ],
           ),
         ),

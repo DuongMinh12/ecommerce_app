@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.blue
         ),
         onGenerateRoute: Approute.onGenerrateRoute,
-        initialRoute: HomeScreen.routeName,
+        initialRoute: FlashPage.routeName,
         debugShowCheckedModeBanner: false,
       ),
     );

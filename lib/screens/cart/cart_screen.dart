@@ -51,7 +51,7 @@ static const String routeName ='cartPage';
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(Cart().freeDeliverySring, style: txtfont14,),
+                          Text(state.cart.freeDeliverySring, style: txtfont14,),
                           ElevatedButton(onPressed: (){},
                             child: Text('Add more item', style: txtfont14!.copyWith(color: Colors.white),),
                             style: ElevatedButton.styleFrom(
@@ -84,7 +84,7 @@ static const String routeName ='cartPage';
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text('SUBTOTAL', style: txtfont14,),
-                                Text('\$${Cart().subtotalSring}', style: txtfont14,),
+                                Text('\$${state.cart.subtotalSring}', style: txtfont14,),
                               ],
                             ),
                             SizedBox(height: 10,),
@@ -92,7 +92,7 @@ static const String routeName ='cartPage';
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text('DELEVERY FREE', style: txtfont14,),
-                                Text('\$${Cart().deliveryFreeSring}', style: txtfont14,),
+                                Text('\$${state.cart.deliveryFreeSring}', style: txtfont14,),
                               ],
                             ),
                           ],
@@ -120,7 +120,7 @@ static const String routeName ='cartPage';
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text('TOTAL', style: txtfont14!.copyWith(color: Colors.white),),
-                                  Text('\$${Cart().totalFeeSring}', style: txtfont14!.copyWith(color: Colors.white),),
+                                  Text('\$${state.cart.totalFeeSring}', style: txtfont14!.copyWith(color: Colors.white),),
                                 ],
                               ),
                             ),
